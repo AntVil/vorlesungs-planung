@@ -1,1 +1,1 @@
-# vorlesungs-planung
+# lecutre-planning
