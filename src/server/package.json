@@ -1,0 +1,23 @@
+{
+  "name": "vorlesungs-planung",
+  "version": "1.0.0",
+  "description": "A tool for planing lectures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntVil/vorlesungs-planung.git"
+  },
+  "keywords": [
+    "planing",
+    "lecture"
+  ],
+  "author": "AntVil, A-lex323, AndreiCosovan, AranguZ, chris-19130593, Jandroid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AntVil/vorlesungs-planung/issues"
+  },
+  "homepage": "https://github.com/AntVil/vorlesungs-planung#readme"
+}
