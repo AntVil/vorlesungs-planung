@@ -1,4 +1,4 @@
-# lecutre-planning
+# lecture-planning
 
 ### Todo
 - [ ] managment
@@ -12,4 +12,10 @@
   - [ ] storing data
 - [ ] clientside/public
   - [ ] design pages
-  - [ ] 
+  - [ ] decide on colors
+
+
+### Departments
+| Managment    | Design | Backend | Frontend               |
+| ------------ | ------ | ------- | ---------------------- |
+| David (/Jan) | Chris  | Anton   | Alexander, Andrei, Jan |

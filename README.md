@@ -1,4 +1,4 @@
-# lecutre-planning
+# lecture-planning
 
 simplify lecture planning
 
