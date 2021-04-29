@@ -1,5 +1,7 @@
 # lecutre-planning
 
+simplify lecture planning
+
 ### How to?
 To start the server navigate to the root directory of this project and execute this command:
 ```shell
