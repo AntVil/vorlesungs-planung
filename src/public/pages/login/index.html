@@ -9,11 +9,25 @@
         <link rel="stylesheet" href="../../generic-styles/layout.css">
         <link rel="stylesheet" href="../../generic-styles/style.css">
 
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
     </head>
 
     <body>
-
+        <main>
+            <div id="content">
+                <h1>DHBW Lörrach</h1>
+                <form id="user_selection">
+                    <input id="admin_radio" type="radio" name="user_selection" />
+                    <input id="lecturer_radio" type="radio" name="user_selection" />
+                    <input id="studen_radio" type="radio" name="user_selection" />
+                </form>
+                <form id="login_window" onsubmit="return false">
+                    <input id="username" />
+                    <input id="password" />
+                    <button id="login_button" type="submit" onclick="login()">login</button>
+                </form>
+            </div>
+        </main>
     </body>
 </html>

@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/AntVil/vorlesungs-planung/issues"
   },
-  "homepage": "https://github.com/AntVil/vorlesungs-planung#readme"
+  "homepage": "https://github.com/AntVil/vorlesungs-planung#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

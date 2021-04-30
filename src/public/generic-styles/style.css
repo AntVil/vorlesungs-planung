@@ -1,10 +1,66 @@
 :root{
-
+    --background-color: #eeeeee;
+    --theme-color-1: #ff0000;
+    --theme-color-2: #aa0000;
+    --theme-color-3: #990000;
+    --theme-color-4: #770000;
+    --theme-color-5: #330000;
+    --text-color-1: #ffffff;
+    --text-color-2: #ffffff;
 }
 
 /* dark theme */
 @media (prefers-color-scheme: dark) {
     :root{
-        
+        --background-color: #333333;
+        --theme-color-1: #666666;
+        --theme-color-2: #555555;
+        --theme-color-3: #333333;
+        --theme-color-4: #222222;
+        --theme-color-5: #111111;
+        --text-color-1: #0099FF;
+        --text-color-2: #FF9900;
     }
+}
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-color-1);
+}
+
+header{
+    background-color: var(--theme-color-1);
+}
+
+a{
+    color: var(--text-color-1);
+    text-decoration: none;
+}
+
+nav{
+    background-color: var(--theme-color-2);
+}
+
+main{
+    background-color: var(--background-color);
+}
+
+footer{
+    background-color: var(--theme-color-1);
+}
+
+.scroll{
+    overflow-y: scroll;
+    scrollbar-color: var(--theme-color-1) var(--theme-color-5);
+    scrollbar-width: thin;
+}
+
+.scroll::-webkit-scrollbar-thumb{
+    background-color: var(--theme-color-1);
+    background-clip: content-box;
+}
+
+.scroll::-webkit-scrollbar{
+    background-color: var(--theme-color-5);
+    width: 7px;
 }

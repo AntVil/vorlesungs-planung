@@ -1,0 +1,26 @@
+#content{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+}
+
+#content>h1{
+
+}
+
+#content>#user_selection{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#login_window{
+    background-color: var(--theme-color-5);
+    border-radius: 5px;
+}
+
+#login_button{
+
+}
