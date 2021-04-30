@@ -1,25 +1,25 @@
 :root{
     --background-color: #eeeeee;
-    --theme-color-1: #ff0000;
-    --theme-color-2: #aa0000;
-    --theme-color-3: #990000;
-    --theme-color-4: #770000;
-    --theme-color-5: #330000;
-    --text-color-1: #ffffff;
-    --text-color-2: #ffffff;
+    --theme-color-1: #e30013;
+    --theme-color-2: #8f070e;
+    --theme-color-3: #7e8a91;
+    --theme-color-4: #b3b3b3;
+    --theme-color-5: #757575;
+    --text-color-1: #000000;
+    --text-color-2: #5d6972;
 }
 
 /* dark theme */
 @media (prefers-color-scheme: dark) {
     :root{
         --background-color: #333333;
-        --theme-color-1: #666666;
-        --theme-color-2: #555555;
-        --theme-color-3: #333333;
+        --theme-color-1: #e30013;
+        --theme-color-2: #8f070e;
+        --theme-color-3: #7e8a91;
         --theme-color-4: #222222;
         --theme-color-5: #111111;
-        --text-color-1: #0099FF;
-        --text-color-2: #FF9900;
+        --text-color-1: #ffffff;
+        --text-color-2: #7e8a91;
     }
 }
 
