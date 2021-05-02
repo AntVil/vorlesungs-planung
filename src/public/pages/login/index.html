@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="../../generic-styles/layout.css">
         <link rel="stylesheet" href="../../generic-styles/style.css">
+        <link rel="stylesheet" href="../../generic-styles/classes.css">
 
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
@@ -15,17 +16,25 @@
 
     <body>
         <main>
+            <canvas id="background-animation"></canvas>
             <div id="content">
                 <h1>DHBW Lörrach</h1>
-                <form id="user_selection">
-                    <input id="admin_radio" type="radio" name="user_selection" />
-                    <input id="lecturer_radio" type="radio" name="user_selection" />
-                    <input id="studen_radio" type="radio" name="user_selection" />
-                </form>
-                <form id="login_window" onsubmit="return false">
-                    <input id="username" />
-                    <input id="password" />
-                    <button id="login_button" type="submit" onclick="login()">login</button>
+                <form id="login_window_admin" onsubmit="return false">
+                    <input id="admin_radio" type="radio" name="user_selection" value="admin" checked />
+                    <input id="lecturer_radio" type="radio" name="user_selection" value="lecturer" />
+                    <input id="student_radio" type="radio" name="user_selection" value="student" />
+
+                    <label class="unselectable" id="admin_radio_label" for="admin_radio">admin</label>
+                    <label class="unselectable" id="lecturer_radio_label" for="lecturer_radio">dozent</label>
+                    <label class="unselectable" id="student_radio_label" for="student_radio">student</label>
+                    
+                    <input id="username_admin" type="email" placeholder="E-mail" />
+                    <input id="password_admin" type="password" placeholder="Passwort" />
+                    <input id="username_lecturer" placeholder="Benutzername" />
+                    <input id="password_lecturer" type="password" placeholder="Passwort" />
+                    <input id="username_student" type="number" placeholder="Martrikel" />
+                    
+                    <button class="unselectable" id="login_button" type="submit" onclick="login()">login</button>
                 </form>
             </div>
         </main>

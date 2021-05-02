@@ -11,12 +11,12 @@ app.use(express.static(constants.PUBLIC_FOLDER_PATH));
 
 
 app.post("/login", function (req, res) {
-    let token = ""
+    let dataKey = ""
     for(let i=0;i<10;i++){
-        token += chars[Math.floor(Math.random() * chars.length)]
+        dataKey += chars[Math.floor(Math.random() * chars.length)]
     }
-  
-    res.send(token);
+
+    res.send(dataKey);
 });
 
 
