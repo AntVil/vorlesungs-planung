@@ -7,6 +7,7 @@
     --theme-color-5: #757575;
     --text-color-1: #000000;
     --text-color-2: #5d6972;
+    --text-color-3: #eeeeee;
 }
 
 /* dark theme */
@@ -26,41 +27,4 @@
 body{
     background-color: var(--background-color);
     color: var(--text-color-1);
-}
-
-header{
-    background-color: var(--theme-color-1);
-}
-
-a{
-    color: var(--text-color-1);
-    text-decoration: none;
-}
-
-nav{
-    background-color: var(--theme-color-2);
-}
-
-main{
-    background-color: var(--background-color);
-}
-
-footer{
-    background-color: var(--theme-color-1);
-}
-
-.scroll{
-    overflow-y: scroll;
-    scrollbar-color: var(--theme-color-1) var(--theme-color-5);
-    scrollbar-width: thin;
-}
-
-.scroll::-webkit-scrollbar-thumb{
-    background-color: var(--theme-color-1);
-    background-clip: content-box;
-}
-
-.scroll::-webkit-scrollbar{
-    background-color: var(--theme-color-5);
-    width: 7px;
 }
