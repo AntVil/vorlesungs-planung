@@ -1,18 +1,7 @@
 # lecture-planning
 
 ### Todo
-- [ ] managment
-  - [x] create managment files
-  - [ ] fill in
-  - [ ] send
-- [ ] serverside
-  - [ ] deliver pages (probably Express)
-  - [ ] provide data
-  - [ ] respond to get/post/...
-  - [ ] storing data
-- [ ] clientside/public
-  - [ ] design pages
-  - [ ] decide on colors
+- [trello](https://trello.com/b/4xdAgSu9/anwendungsprojekt-informatik)
 
 
 ### Departments
