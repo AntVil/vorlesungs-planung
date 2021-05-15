@@ -5,3 +5,19 @@
     -webkit-user-select: none;
     -o-user-select: none;
 }
+
+.scroll{
+    overflow-y: scroll;
+    scrollbar-color: var(--theme-color-1) var(--theme-color-5);
+    scrollbar-width: thin;
+}
+
+.scroll::-webkit-scrollbar-thumb{
+    background-color: var(--theme-color-1);
+    background-clip: content-box;
+}
+
+.scroll::-webkit-scrollbar{
+    background-color: var(--theme-color-5);
+    width: 7px;
+}
