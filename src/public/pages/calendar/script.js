@@ -6,8 +6,11 @@ window.onload = function(){
 
 // show sidebar
 function show_day(day){
-    console.log(day);
-    document.getElementById("rightbar_checkbox").checked = true;
+    if(day.getAttribute("aria-disabled") == "false"){
+        document.getElementById("rightbar_checkbox").checked = true;
+        let s = `${day.children[0].innerText} ${document.getElementById("calendar_month_display").innerText}`;
+        document.getElementById("rightbar_date").innerText = s;
+    }
 }
 
 // calendar control
@@ -30,8 +33,8 @@ function updateCalendar(){
     let url = window.location.href.split("/pages")[0] + "/getCalendar";
 
     let body = {
-        startDate: selectedDate,
-        endDate: "234"
+        "year": selectedDate.getFullYear(),
+        "month": selectedDate.getMonth(),
     }
 
     // make request
@@ -40,7 +43,45 @@ function updateCalendar(){
     loginRequest.setRequestHeader("Content-Type", "application/json");
     
     loginRequest.onload = function () { 
-        let appointments = JSON.parse(loginRequest.responseText);
+        let appointments = JSON.parse(loginRequest.responseText).data;
+        
+        // dummy data
+        appointments = [
+            {
+                "id": 123,
+                "name": "Python",
+                "location": "xy",
+                "day": 4,
+                "start": 9,
+                "end": 12,
+                "status": "accepted",
+                "lecturer": "Mustermann1",
+                "type": "lecture"
+            },
+            {
+                "id": 124,
+                "name": "Prolog",
+                "location": "xy",
+                "day": 4,
+                "start": 9,
+                "end": 12,
+                "status": "pending",
+                "lecturer": "Mustermann2",
+                "type": "lecture"
+            },
+            {
+                "id": 126,
+                "name": "Mathematik",
+                "location": "xy",
+                "day": 6,
+                "start": 9,
+                "end": 12,
+                "status": "accepted",
+                "lecturer": "Mustermann1",
+                "type": "lecture"
+            }
+        ];
+        
         fillCalendar(appointments);
     };
 
@@ -58,18 +99,18 @@ function fillCalendar(appointments){
     let month = selectedDate.getMonth();
 
     let monthName = [
-        "January",
-        "February",
-        "March",
+        "Januar",
+        "Februar",
+        "März",
         "April",
-        "May",
-        "June",
-        "July",
+        "Mai",
+        "Juni",
+        "Juli",
         "August",
         "September",
-        "October",
+        "Oktober",
         "November",
-        "December"
+        "Dezember"
     ][month];
     document.getElementById("calendar_month_display").innerText = `${monthName} ${year}`;
 
@@ -80,10 +121,24 @@ function fillCalendar(appointments){
     
     for(let i=0;i<index;i++){
         calendar[i].children[0].innerText = "";
+        calendar[i].children[1].innerHTML = "";
+        calendar[i].setAttribute("aria-disabled", "true");
     }
 
     while (date < new Date(endDate)) {
         calendar[index].children[0].innerText = date.getDate() + ".";
+        calendar[index].children[1].innerHTML = "";
+
+        for(let i=0;i<appointments.length;i++){
+            if(date.getUTCDate() == appointments[i].day){
+                let appointment = document.createElement("div");
+                appointment.innerText = `${appointments[i].lecturer}: ${appointments[i].name}`;
+                
+                calendar[index].children[1].appendChild(appointment);
+            }
+        }
+
+        calendar[index].setAttribute("aria-disabled", "false");
 
         index += 1;
         date.setUTCDate(date.getUTCDate() + 1);
@@ -91,5 +146,7 @@ function fillCalendar(appointments){
     
     for(let i=index;i<calendar.length;i++){
         calendar[i].children[0].innerText = "";
+        calendar[i].children[1].innerHTML = "";
+        calendar[i].setAttribute("aria-disabled", "true");
     }
 }

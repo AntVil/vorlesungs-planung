@@ -26,7 +26,7 @@ app.post("/getCalendar", function (req, res) {
     // returns dummy-data
     res.send(
         JSON.stringify({
-            entries: [
+            data: [
                 {
                     id: 123456789,
                     type: "lecture",
