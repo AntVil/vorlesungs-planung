@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title></title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <link rel="stylesheet" href="../../generic-styles/style.css">
+        <link rel="stylesheet" href="../../generic-styles/layout.css">
+
+        <link rel="stylesheet" href="./style.css">
+        <script src="./script.js"></script>
+    </head>
+
+    <body>
+        <header><h1>Lecture-Planner</h1></header>
+        <input id="rightbar_checkbox" type="checkbox" />
+        <main>
+            <aside id="leftbar">
+                <div>
+                    <select id="course_selection"></select>
+                </div>
+                <div class="scroll">
+                    possible
+                </div>
+            </aside>
+            <div id="calendar">
+                <div id="calendar_toolbar">
+                    <form onsubmit="return false;">
+                        <button onclick="previousMonth()">&lt;</button>
+                        <button onclick="nextMonth()">&gt;</button>
+                    </form>
+                    <h2 id="calendar_month_display">April 2021</h2>
+                </div>
+                <div id="calendar_content">
+                    <div class="week_label">Mon</div>
+                    <div class="week_label">Tues</div>
+                    <div class="week_label">Wed</div>
+                    <div class="week_label">Thurs</div>
+                    <div class="week_label">Fri</div>
+                    <div class="week_label">Sat</div>
+                    <div class="week_label">Sun</div>
+                    
+                    <div id="calender_0" class="calendar_day" onclick="show_day(this)"><div class="calendar_day_numer"></div><div class="calendar_day_appointments"></div></div>
+                    <div id="calender_1" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_2" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_3" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_4" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_5" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_6" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+
+                    <div id="calender_7" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_8" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_9" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_10" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_11" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_12" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_13" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+
+                    <div id="calender_14" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_15" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_16" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_17" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_18" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_19" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_20" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+
+                    <div id="calender_21" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_22" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_23" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_24" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_25" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_26" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_27" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+
+                    <div id="calender_28" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_29" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_30" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_31" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_32" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_33" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_34" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+
+                    <div id="calender_35" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_36" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_37" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_38" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_39" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_40" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                    <div id="calender_41" class="calendar_day" onclick="show_day(this)">
+                        <div class="calendar_day_numer"></div>
+                        <div class="calendar_day_appointments"></div>
+                    </div>
+                </div>
+            </div>
+            <aside id="rightbar">
+                <div id="rightbar_top"><label for="rightbar_checkbox">&gt;</label><h3 id="rightbar_date">1 Jan 20</h3></div>
+                <div id="rightbar_day"></div>
+                <form>
+                    
+                </form>
+            </aside>
+        </main>
+        <footer></footer>
+    </body>
+</html>

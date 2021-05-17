@@ -8,35 +8,36 @@
 
         <link rel="stylesheet" href="../../generic-styles/layout.css">
         <link rel="stylesheet" href="../../generic-styles/style.css">
-        <link rel="stylesheet" href="../../generic-styles/classes.css">
 
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
     </head>
 
     <body>
+        <header></header>
         <main>
-            <canvas id="background-animation"></canvas>
-            <div id="content">
-                <h1>DHBW Lörrach</h1>
-                <form id="login_window_admin" onsubmit="return false">
-                    <input id="admin_radio" type="radio" name="user_selection" value="admin" checked />
-                    <input id="lecturer_radio" type="radio" name="user_selection" value="lecturer" />
-                    <input id="student_radio" type="radio" name="user_selection" value="student" />
-
-                    <label class="unselectable" id="admin_radio_label" for="admin_radio">admin</label>
-                    <label class="unselectable" id="lecturer_radio_label" for="lecturer_radio">dozent</label>
-                    <label class="unselectable" id="student_radio_label" for="student_radio">student</label>
-                    
-                    <input id="username_admin" type="email" placeholder="E-mail" />
-                    <input id="password_admin" type="password" placeholder="Passwort" />
-                    <input id="username_lecturer" placeholder="Benutzername" />
-                    <input id="password_lecturer" type="password" placeholder="Passwort" />
-                    <input id="username_student" type="number" placeholder="Martrikel" />
-                    
-                    <button class="unselectable" id="login_button" type="submit" onclick="login()">login</button>
-                </form>
-            </div>
+            <canvas id="background_animation"></canvas>
+            <form>
+                <input id="admin_radio" type="radio" name="user_selection" checked />
+                <label id="admin_radio_label" for="admin_radio">admin</label>
+                
+                <input id="lecturer_radio" type="radio" name="user_selection" />
+                <label id="lecturer_radio_label" for="lecturer_radio">lecturer</label>
+                
+                <input id="student_radio" type="radio" name="user_selection" />
+                <label id="student_radio_label" for="student_radio">student</label>
+                
+                <input id="admin_username" placeholder="e-mail" />
+                <input id="admin_password" type="password" placeholder="password" />
+                
+                <input id="lecturer_username" placeholder="username" />
+                <input id="lecturer_password" type="password" placeholder="password" />
+                
+                <input id="student_username" placeholder="matriculation number" />
+                
+                <button id="login_button" type="submit" onclick="login()">login</button>
+            </form>
         </main>
+        <footer></footer>
     </body>
 </html>

@@ -36,8 +36,8 @@ function login(){
 
     // make request
     let loginRequest = new XMLHttpRequest();
-    loginRequest.open('POST', url, true);
-    loginRequest.setRequestHeader('Content-Type', 'application/json');
+    loginRequest.open("POST", url, true);
+    loginRequest.setRequestHeader("Content-Type", "application/json");
     
     loginRequest.onload = function () { 
         // save dataKey (used for retrieving data from server)
@@ -45,7 +45,7 @@ function login(){
         localStorage.setItem("dataKey", dataKey);
         
         // redirect to next page
-        window.location.href = window.location.href.split("/login")[0] + "/calender";
+        window.location.href = window.location.href.split("/login")[0] + "/calendar";
     };
 
     loginRequest.onerror = function () {
@@ -61,7 +61,6 @@ function login(){
     loginRequest.send(JSON.stringify(body));
 }
 
-
 // background animation
 let can;
 let c;
@@ -69,7 +68,7 @@ let shapes;
 let shapeColors = ["#FF0000", "#7e8a91"]
 
 window.onload = function () {
-    can = document.getElementById("background-animation");
+    can = document.getElementById("background_animation");
     can.width = 1000;
     can.height = 1000;
     c = can.getContext("2d");
