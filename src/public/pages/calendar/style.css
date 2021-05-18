@@ -145,3 +145,22 @@ main{
 #calendar_toolbar>h2{
     margin: auto;
 }
+
+.terminPopup{
+    border: solid transparent 1px;
+    border-radius: 15px;
+    padding: 15px;
+    width: 600px;
+    box-shadow: 1px 1px 20px;
+}
+
+.terminPopup section{
+    float: right;
+}
+
+.terminPopup section button{
+    padding: 10px;
+    border-radius: 5px;
+    border: solid transparent 1px;
+    box-shadow: grey 1px 1px 5px;
+}
