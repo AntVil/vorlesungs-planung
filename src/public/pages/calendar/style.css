@@ -145,3 +145,115 @@ main{
 #calendar_toolbar>h2{
     margin: auto;
 }
+
+.addClassBtn {
+    border: 1px solid;
+    line-height: auto;
+    width: 80%;
+    font-size: 25px;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    
+    background-color: rgba(255, 255, 255, 1);
+    display: grid;
+    margin:auto;
+    margin-bottom: 5%;
+}
+
+.addClassBtn:hover {
+    background-color: #E30013;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    
+}
+
+.addClassBtn:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.classChoice {
+    width: 75%;
+}
+
+.classListItem {
+    border: 1px solid;
+    list-style-type: None;
+    margin: 0 0 10% 0;
+    font-size:20px;
+    padding: 10%;
+    word-wrap: break-word;
+}
+
+.classListItem:hover {
+    background-color: #E30013;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.classListItem:focus {
+    background-color: #E30013;
+    color: rgba(255, 255, 255, 1);
+    
+}
+
+.classListItem:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+    
+}
+
+.courseList::-webkit-scrollbar{
+  display: none;
+}
+
+.courseList {
+  padding: 10%;
+  overflow: scroll;
+  height: 300px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.lecturerList {
+  padding: 10%;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 300px;
+}
+
+.lecturerList::-webkit-scrollbar{
+  display: none;
+}
+
+#lecturerChoice {
+  width: 75%;
+}
+
+.lecturerListItem {
+  border: 1px solid;
+  list-style-type: None;
+  margin: 0 0 10% 0;
+  font-size:20px;
+  padding: 10%;
+  word-wrap: break-word;
+}
+
+.lecturerListItem:hover {
+    background-color: #E30013;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+
+
+.lecturerListItem:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.lecturerListItem:focus {
+  background-color: #E30013;
+  color: rgba(255, 255, 255, 1);
+}

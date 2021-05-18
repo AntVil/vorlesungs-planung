@@ -2,6 +2,8 @@ let selectedDate = new Date();
 
 window.onload = function(){
     updateCalendar();
+    updateClasses();
+    updateLecturers();
 }
 
 // show sidebar
@@ -150,3 +152,99 @@ function fillCalendar(appointments){
         calendar[i].setAttribute("aria-disabled", "true");
     }
 }
+function updateClasses(){
+    let classes = [
+        'Theoretische Informatik',
+        'Mathematik',
+        'Programmieren',
+        'Algorithmen',
+        'Projektmanagement',
+        'Python',
+        'Theoretische Informatik',
+        'Mathematik',
+        'Programmieren',
+        'Algorithmen',
+        'Projektmanagement',
+        'Python'
+    ]
+    courseList = document.createElement('ul');
+    courseList.className = "courseList";
+    document.getElementById('KursListe').appendChild(courseList);
+    
+    classes.forEach(function (classItem) {
+    let course = document.createElement('li');
+    course.tabIndex = -1;
+    course.className = "classListItem";
+    course.addEventListener("click",function(e) {
+        
+    });
+    courseList.appendChild(course);
+    
+    course.innerHTML += classItem;
+    });
+}
+
+function updateLecturers(){
+    let lecturers = [
+        'Erik Behrends',
+        'Stephan Laage-Witt',
+        'Manuel Neuer',
+        'Weihnachtsmann',
+        'test1',
+        'test2'
+    ]
+    
+    lecturerList  = document.createElement("ul");
+    
+    lecturerList.className = "lecturerList";
+    
+    document.getElementById('lecturerList').appendChild(lecturerList);
+    
+    lecturers.forEach(function (lecturerItem) {
+    let lecturer = document.createElement('li');
+    lecturer.tabIndex = -1;
+    lecturer.className = "lecturerListItem";
+    lecturer.addEventListener("click",function(e) {
+        
+    });
+    lecturer.addEventListener('contextmenu', e => {
+      e.preventDefault();
+    });
+    lecturerList.appendChild(lecturer);
+    
+    lecturer.innerHTML += lecturerItem;
+    });
+}
+
+
+function addClass(){
+    let classToAdd = window.prompt("Enter the class you want to add!")
+    classes.push(classToAdd);
+    //location.reload();
+    alert(classes); //Testfunktion
+}
+
+function addLecturer(){
+    let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
+    lecturers.push(lecturerToAdd);
+    //location.reload();
+    alert(lecturers); //Testfunktion
+}
+
+// let addLecturerBtn = document.getElementById('addLecturerBtn');
+
+// addLecturerBtn.addEventListener("click", function(e){
+// let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
+// lecturers.push(lecturerToAdd);
+// //location.reload();
+// alert(lecturers); //Testfunktion
+// });
+
+// let addClassBtn = document.getElementById('addClassBtn');
+
+// addClassBtn.addEventListener("click", function(e){
+// let classToAdd = window.prompt("Enter the class you want to add!")
+// classes.push(classToAdd);
+// //location.reload();
+// alert(classes); //Testfunktion
+// });
