@@ -6,12 +6,27 @@ window.onload = function(){
     updateLecturers();
 }
 
-// show sidebar
+// show sidebar + fill with appointments
 function show_day(day){
     if(day.getAttribute("aria-disabled") == "false"){
         document.getElementById("rightbar_checkbox").checked = true;
         let s = `${day.children[0].innerText} ${document.getElementById("calendar_month_display").innerText}`;
         document.getElementById("rightbar_date").innerText = s;
+
+        let day_appointments = document.getElementById("rightbar_day_appointments");
+        day_appointments.innerHTML = "";
+
+        let appointments = day.children[1].children;
+
+        for(let i=0;i<appointments.length;i++){
+            appointment = appointments[i].cloneNode(true)
+            
+            appointment.style.gridRowStart = parseInt(appointment.getAttribute("aria-start")) - 7;
+            appointment.style.gridRowEnd = parseInt(appointment.getAttribute("aria-end")) - 7;
+            console.log(appointment.style.gridRowStart)
+
+            day_appointments.appendChild(appointment);
+        }
     }
 }
 
@@ -65,8 +80,19 @@ function updateCalendar(){
                 "name": "Prolog",
                 "location": "xy",
                 "day": 4,
-                "start": 9,
-                "end": 12,
+                "start": 13,
+                "end": 16,
+                "status": "pending",
+                "lecturer": "Mustermann2",
+                "type": "lecture"
+            },
+            {
+                "id": 124,
+                "name": "Prolog",
+                "location": "xy",
+                "day": 4,
+                "start": 13,
+                "end": 15,
                 "status": "pending",
                 "lecturer": "Mustermann2",
                 "type": "lecture"
@@ -76,7 +102,7 @@ function updateCalendar(){
                 "name": "Mathematik",
                 "location": "xy",
                 "day": 6,
-                "start": 9,
+                "start": 10,
                 "end": 12,
                 "status": "accepted",
                 "lecturer": "Mustermann1",
@@ -121,13 +147,15 @@ function fillCalendar(appointments){
     let date = new Date(Date.UTC(year, month));
     let index = (date.getDay() + 6) % 7;
     
+    //clear days outside range
     for(let i=0;i<index;i++){
         calendar[i].children[0].innerText = "";
         calendar[i].children[1].innerHTML = "";
         calendar[i].setAttribute("aria-disabled", "true");
     }
 
-    while (date < new Date(endDate)) {
+    //fill in days + apointments
+    while (date < endDate) {
         calendar[index].children[0].innerText = date.getDate() + ".";
         calendar[index].children[1].innerHTML = "";
 
@@ -135,7 +163,15 @@ function fillCalendar(appointments){
             if(date.getUTCDate() == appointments[i].day){
                 let appointment = document.createElement("div");
                 appointment.innerText = `${appointments[i].lecturer}: ${appointments[i].name}`;
-                
+                appointment.setAttribute("aria-id", appointments[i].id);
+                appointment.setAttribute("aria-name", appointments[i].name);
+                appointment.setAttribute("aria-location", appointments[i].location);
+                appointment.setAttribute("aria-start", appointments[i].start);
+                appointment.setAttribute("aria-end", appointments[i].end);
+                appointment.setAttribute("aria-status", appointments[i].status);
+                appointment.setAttribute("aria-lecturer", appointments[i].lecturer);
+                appointment.setAttribute("aria-type", appointments[i].type);
+
                 calendar[index].children[1].appendChild(appointment);
             }
         }
@@ -146,6 +182,7 @@ function fillCalendar(appointments){
         date.setUTCDate(date.getUTCDate() + 1);
     }
     
+    //clear days outside range
     for(let i=index;i<calendar.length;i++){
         calendar[i].children[0].innerText = "";
         calendar[i].children[1].innerHTML = "";

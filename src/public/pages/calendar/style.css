@@ -1,6 +1,9 @@
+/*
+global variables
+*/
 :root{
     --leftbar_width: 150px;
-    --rightbar_width: 250px;
+    --rightbar_width: 350px;
 }
 
 main{
@@ -10,10 +13,9 @@ main{
     grid-template-columns: var(--leftbar_width) auto;
 }
 
-#rightbar_checkbox{
-    display: none;
-}
-
+/*
+leftbar
+*/
 #leftbar{
     display: grid;
     grid-template-rows: auto 1fr;
@@ -24,14 +26,10 @@ main{
     padding: 5px;
 }
 
-#rightbar{
-    position: absolute;
-    right: 0;
-    width: var(--rightbar_width);
-    transform: translateX(100%);
-    transition: transform 0.3s;
-}
 
+/*
+calendar
+*/
 #calendar{
     width: calc(100vw - var(--leftbar_width));
     transition: width 0.3s;
@@ -39,14 +37,6 @@ main{
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
-}
-
-#rightbar_checkbox:checked~main>#calendar{
-    width: calc(100vw - var(--leftbar_width) - var(--rightbar_width));
-}
-
-#rightbar_checkbox:checked~main>#rightbar{
-    transform: translateX(0%);
 }
 
 #calendar_content{
@@ -94,12 +84,74 @@ main{
     background-color: var(--theme-color-1);
 }
 
+#calendar_content>.calendar_day>.calendar_day_appointments>div[aria-status="pending"]{
+    background-color: var(--theme-color-2);
+    border: dashed 2px #00000000;
+}
+
 #calendar_content>.calendar_day>.calendar_day_appointments>div:hover{
     color: var(--text-color-2);
-    border: solid 2px var(--theme-color-2);
+    border-color: var(--theme-color-4);
     cursor: pointer;
 }
 
+
+/*
+calendar toolbar
+*/
+#calendar_toolbar{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#calendar_toolbar>form{
+    margin: 5px;
+}
+
+#calendar_toolbar>form>*{
+    display: inline;
+}
+
+#calendar_toolbar>h2{
+    margin: auto;
+}
+
+
+/*
+rightbar
+*/
+#rightbar{
+    position: absolute;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    right: 0;
+    width: var(--rightbar_width);
+    height: calc(100vh - 50px - 50px);
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    background-color: var(--theme-color-3);
+}
+
+
+/*
+rightbar animation
+*/
+#rightbar_checkbox{
+    display: none;
+}
+
+#rightbar_checkbox:checked~main>#calendar{
+    width: calc(100vw - var(--leftbar_width) - var(--rightbar_width));
+}
+
+#rightbar_checkbox:checked~main>#rightbar{
+    transform: translateX(0%);
+}
+
+
+/*
+rightbar top
+*/
 #rightbar_top{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -125,25 +177,66 @@ main{
 #rightbar_top>#rightbar_date{
     background-color: var(--theme-color-2);
     width: 100%;
-    margin: 0;
+    margin: 0 auto 0 auto;
     text-align: center;
 }
 
-#calendar_toolbar{
+
+/*
+rightbar content
+*/
+#rightbar_day{
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
 }
 
-#calendar_toolbar>form{
-    margin: 5px;
+#rightbar_day_content{
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-template-rows: 1fr;
+    background-color: var(--theme-color-3);
 }
 
-#calendar_toolbar>form>*{
-    display: inline;
+#rightbar_day_labels{
+    display: grid;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    grid-template-rows: repeat(9, 1fr);
 }
 
-#calendar_toolbar>h2{
-    margin: auto;
+#rightbar_day_labels>div{
+    background-color: var(--theme-color-5);
+}
+
+#rightbar_day_labels div:nth-child(2n){
+    filter: brightness(150%);
+}
+
+#rightbar_day_appointments{
+    display: grid;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: 1fr;
+}
+
+#rightbar_day_appointments>div{
+    border-radius: 5px;
+    margin: 2px;
+    border: solid 2px #00000000;
+    background-color: var(--theme-color-1);
+    z-index: 1;
+}
+
+#rightbar_day_appointments>div[aria-status="pending"]{
+    background-color: var(--theme-color-2);
+    border: dashed 2px #00000000;
+}
+
+#rightbar_day_appointments>div:hover{
+    color: var(--text-color-2);
+    border-color: var(--theme-color-4);
+    cursor: pointer;
 }
 
 .addClassBtn {
