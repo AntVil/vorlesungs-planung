@@ -3,6 +3,11 @@
 simplify lecture planning
 
 ### How to?
+To install all needed packages navigate to the folder `src/server/` and run the command:
+```shell
+npm install
+```
+
 To start the server navigate to the root directory of this project and execute this command:
 ```shell
 node src/server/index.js
