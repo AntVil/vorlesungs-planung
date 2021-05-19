@@ -147,22 +147,35 @@ function fillCalendar(appointments){
     }
 }
 
-//
+// kopiert
 function updateClasses(){
-    let classes = [
-        "Theoretische Informatik",
-        "Mathematik",
-        "Programmieren",
-        "Algorithmen",
-        "Projektmanagement",
-        "Python",
-        "Theoretische Informatik",
-        "Mathematik",
-        "Programmieren",
-        "Algorithmen",
-        "Projektmanagement",
-        "Python"
-    ]
+     // get correct url for request
+     let url = window.location.href.split("/pages")[0] + "/getClasses";
+
+ 
+     // make request
+     let loginRequest = new XMLHttpRequest();
+     loginRequest.open("GET", url, true);
+     loginRequest.setRequestHeader("Content-Type", "application/json");
+     
+     loginRequest.onload = function () { 
+         let classes = JSON.parse(loginRequest.responseText);
+         
+         fillClasses(classes);
+     };
+ 
+     loginRequest.onerror = function () {
+         alert("something went wrong");
+     };
+ 
+     loginRequest.send();
+    
+
+   
+}
+
+function fillClasses(classes){
+      
     courseList = document.createElement("ul");
     courseList.className = "courseList";
     document.getElementById("KursListe").appendChild(courseList);
@@ -180,16 +193,31 @@ function updateClasses(){
     });
 }
 
-//
 function updateLecturers(){
-    let lecturers = [
-        "Erik Behrends",
-        "Stephan Laage-Witt",
-        "Manuel Neuer",
-        "Weihnachtsmann",
-        "test1",
-        "test2"
-    ]
+    let url = window.location.href.split("/pages")[0] + "/getLecturers";
+
+ 
+     // make request
+     let loginRequest = new XMLHttpRequest();
+     loginRequest.open("GET", url, true);
+     loginRequest.setRequestHeader("Content-Type", "application/json");
+     
+     loginRequest.onload = function () { 
+         let lecturer = JSON.parse(loginRequest.responseText);
+         
+         fillLecturers(lecturer);
+     };
+ 
+     loginRequest.onerror = function () {
+         alert("something went wrong");
+     };
+ 
+     loginRequest.send();
+
+}
+//
+function fillLecturers(lecturers){
+    
     
     lecturerList  = document.createElement("ul");
     
