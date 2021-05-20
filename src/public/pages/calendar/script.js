@@ -175,7 +175,7 @@ function updateClasses(){
 }
 
 function fillClasses(classes){
-      
+    document.getElementById("KursListe").innerHTML = "" ;
     courseList = document.createElement("ul");
     courseList.className = "courseList";
     document.getElementById("KursListe").appendChild(courseList);
@@ -244,9 +244,24 @@ function fillLecturers(lecturers){
 
 function addClass(){
     let classToAdd = window.prompt("Enter the class you want to add!")
-    classes.push(classToAdd);
-    //location.reload();
-    alert(classes); //Testfunktion
+    let newClass = {name: classToAdd};
+    let url = window.location.href.split("/pages")[0] + "/addClasses";
+
+
+    // make request
+    let loginRequest = new XMLHttpRequest();
+    loginRequest.open("POST", url, true);
+    loginRequest.setRequestHeader("Content-Type", "application/json");
+    
+    loginRequest.onload = function () { 
+        updateClasses();
+    };
+
+    loginRequest.onerror = function () {
+        alert("something went wrong");
+    };
+
+    loginRequest.send(JSON.stringify(newClass));
 }
 
 function addLecturer(){

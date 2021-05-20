@@ -7,6 +7,11 @@ const fs = require('fs');
 
 const app = express();
 
+let lecturer = [];
+let classes = [];
+let calendar = {data:[]};
+
+loadJsondata();
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -31,36 +36,48 @@ app.post("/getCalendar", function (req, res) {
     // get requested month and year
     let month = req.body.month;
     let year = req.body.year; 
-    // load json data from file
-    let calendardata = fs.readFileSync('./data/calendardata.json');
-    // parse calendardata to object
-    let calendar = JSON.parse(calendardata);
-    // filter by month and year
+       // filter by month and year
     let returndata = calendar.data.filter(x => x.month == month && x.year == year);
     // return filtered data
     res.json({data:returndata});
 });
+
 // endpoint to retrieve classesdata
 app.get("/getClasses", function (req, res){
-    // load json data from file
-    let classesdata = fs.readFileSync('./data/classes.json');
-     // parse calendardata to object
-    let classes = JSON.parse(classesdata);
-    // return data
+      // return data
     res.json(classes);
 });
 
-
+app.post("/addClasses", function (req, res){
+    console.log(req.body);
+    classes.push(req.body.name);
+    fs.writeFile('./data/classes.json', JSON.stringify(classes,null,2), (err)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+    
+    res.status(201).json(classes);
+});
 
 // endpoint to retrieve lecturerdata
 app.get("/getLecturers", function (req, res){
-    // load json data from file
-    let lecturerdata = fs.readFileSync('./data/lecturers.json');
-    // parse calendardata to object
-    let lecturer = JSON.parse(lecturerdata);
-    // return data
+       // return data
     res.json(lecturer);
 });
+
+function loadJsondata(){
+    // load data from files
+    let classesdata = fs.readFileSync('./data/classes.json');
+    let calendardata = fs.readFileSync('./data/calendardata.json');
+    let lecturerdata = fs.readFileSync('./data/lecturers.json');
+
+    // parse data to objects
+     lecturer = JSON.parse(lecturerdata);
+     classes = JSON.parse(classesdata);
+     calendar = JSON.parse(calendardata);
+
+}
 
 // unfinished
 app.post("/setAppointment", function (req, res) {
