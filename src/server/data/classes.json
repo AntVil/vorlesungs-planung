@@ -1,7 +1,8 @@
 {
-    "data": [
-        "TIF20a",
-        "TIF19a",
-        "TIF19b"
-    ]
+    "classes": {
+        "TIF20a": "dKNUNKWOKsXS",
+        "TIF19a": "scUZKmeur3ja",
+        "TIF19b": "GYIuwAwEqTtX",
+        "WWI20A": "5wNXsnWSQzd0"
+    }
 }

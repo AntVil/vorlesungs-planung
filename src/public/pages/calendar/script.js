@@ -157,6 +157,7 @@ function updateClasses(){
     classesRequest.setRequestHeader("Content-Type", "application/json");
      
     classesRequest.onload = function () { 
+        console.log(classesRequest.responseText)
         let classes = JSON.parse(classesRequest.responseText).data;
         fillClasses(classes);
     };
@@ -171,6 +172,7 @@ function updateClasses(){
 // fills in all classes in the leftbar of the page
 function fillClasses(classes){
     let classes_list = document.getElementById("leftbar_classes");
+    classes_list.innerHTML = "";
     for(let i=0;i<classes.length;i++){
         let lecturer = document.createElement("div");
         lecturer.innerText = classes[i];
@@ -212,48 +214,23 @@ function fillLecturers(lecturers){
 
 
 function addClass(){
-    let classToAdd = window.prompt("Enter the class you want to add!")
-    let newClass = {name: classToAdd};
-    let url = window.location.href.split("/pages")[0] + "/addClasses";
+    let name = window.prompt("Enter the class you want to add:")
+    let body = {"name": name};
+    let url = window.location.href.split("/pages")[0] + "/addClass";
 
 
     // make request
-    let loginRequest = new XMLHttpRequest();
-    loginRequest.open("POST", url, true);
-    loginRequest.setRequestHeader("Content-Type", "application/json");
+    let addClassRequest = new XMLHttpRequest();
+    addClassRequest.open("POST", url, true);
+    addClassRequest.setRequestHeader("Content-Type", "application/json");
     
-    loginRequest.onload = function () { 
+    addClassRequest.onload = function () { 
         updateClasses();
     };
 
-    loginRequest.onerror = function () {
+    addClassRequest.onerror = function () {
         alert("something went wrong");
     };
 
-    loginRequest.send(JSON.stringify(newClass));
+    addClassRequest.send(JSON.stringify(body));
 }
-
-function addLecturer(){
-    let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
-    lecturers.push(lecturerToAdd);
-    //location.reload();
-    alert(lecturers); //Testfunktion
-}
-
-// let addLecturerBtn = document.getElementById("addLecturerBtn");
-
-// addLecturerBtn.addEventListener("click", function(e){
-// let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
-// lecturers.push(lecturerToAdd);
-// //location.reload();
-// alert(lecturers); //Testfunktion
-// });
-
-// let addClassBtn = document.getElementById("addClassBtn");
-
-// addClassBtn.addEventListener("click", function(e){
-// let classToAdd = window.prompt("Enter the class you want to add!")
-// classes.push(classToAdd);
-// //location.reload();
-// alert(classes); //Testfunktion
-// });

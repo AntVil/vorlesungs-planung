@@ -1,32 +1,79 @@
+// internal imports
 const constants = require("./constants");
 
+// external imports
 const express = require("express");
-
-// require filesystem access
 const fs = require('fs');
 
-const app = express();
-
-let lecturer = [];
-let classes = [];
-let calendar = {data:[]};
-/*
-loadJsondata();
-*/
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+const app = express();
 
 app.use(express.json());
 app.use(express.static(constants.PUBLIC_FOLDER_PATH));
 
 
-// unfinished
+// entry point for logging in as a admin, lecturer or student
 app.post("/login", function (req, res) {
-    let dataKey = ""
-    for(let i=0;i<10;i++){
-        dataKey += chars[Math.floor(Math.random() * chars.length)]
+    let token = null;
+    try{
+        let type = req.body.type;
+        let username = req.body.username;
+        let password = req.body.password;
+
+        // hashing password (just a dummy hash)
+        let hash = 0;
+        for(let i=0;i<password.length;i++){
+            hash = (Math.imul(31, hash) + password.charCodeAt(i)) | 0;
+        }
+        hash = String(hash);
+
+        if(type == "admin"){
+            let admins = JSON.parse(fs.readFileSync("./data/users/admins.json")).users;
+            for(let i=0;i<admins.length;i++){
+                if(admins[i].username == username){
+                    if(admins[i].hash == hash){
+                        token = admins[i].token;
+                    }
+                    break;
+                }
+            }
+        }else if(type == "lecturer"){
+            let lecturers = JSON.parse(fs.readFileSync("./data/users/lecturers.json")).users;
+            for(let i=0;i<lecturers.length;i++){
+                if(lecturers[i].username == username){
+                    if(lecturers[i].hash == hash){
+                        token = lecturers[i].token;
+                    }
+                    break;
+                }
+            }
+        }else if(type == "student"){
+            let students = JSON.parse(fs.readFileSync("./data/users/students.json")).users;
+            for(let i=0;i<students.length;i++){
+                if(students[i].id == username){
+                    token = students[i].token;
+                    break;
+                }
+            }
+        }else{
+            token = null;
+        }
+    }catch{
+        token = null;
     }
 
-    res.send(dataKey);
+    if(token != null){
+        res.json({
+            "status": "successful",
+            "token": token
+        });
+    }else{
+        res.json({
+            "status": "failed",
+            "token": ""
+        });
+    }
 });
 
 
@@ -38,11 +85,11 @@ app.post("/getCalendar", function (req, res) {
         let year = parseInt(req.body.year);
         // load json data from file
         let calendarData = fs.readFileSync(`./data/calendar/year_${year}/month_${month}.json`);
-        // parse calendardata to object
+        // parse String to object
         let calendar = JSON.parse(calendarData);
         res.json(calendar);
     }catch{
-        res.json({data: []});
+        res.json({"data": []});
     }
 });
 
@@ -51,23 +98,29 @@ app.get("/getClasses", function (req, res){
     try{
         // load json data from file
         let classesData = fs.readFileSync("./data/classes.json");
-        // parse calendardata to object
+        // parse String to object
         let classes = JSON.parse(classesData);
-        res.json(classes);
+        res.json({"data": Object.keys(classes.classes)});
     }catch{
-        res.json({data: []});
+        res.json({"data": []});
     }
 });
 
-app.post("/addClasses", function (req, res){
-    console.log(req.body);
-    classes.push(req.body.name);
-    fs.writeFile('./data/classes.json', JSON.stringify(classes,null,2), (err)=>{
-        if(err){
-            console.log(err);
-        }
-    });
-    
+// endpoint to add class
+app.post("/addClass", function (req, res){
+    let name = req.body.name;
+
+    let classes = JSON.parse(fs.readFileSync("./data/classes.json"));
+
+    let token = "";
+    for(let i=0;i<12;i++){
+        token += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    classes.classes[name] = token;
+
+    fs.writeFileSync("./data/classes.json", JSON.stringify(classes, null, 4) + "\n");
+
     res.status(201).json(classes);
 });
 
@@ -75,29 +128,18 @@ app.post("/addClasses", function (req, res){
 app.get("/getLecturers", function (req, res){
     try{
         // load json data from file
-        let lecturersData = fs.readFileSync("./data/lecturers.json");
-        // parse calendardata to object
-        let lecturers = JSON.parse(lecturersData);
-        res.json(lecturers);
+        let lecturersData = fs.readFileSync("./data/users/lecturers.json");
+        // parse String to object
+        let lecturers = JSON.parse(lecturersData).users;
+        for(let i=0;i<lecturers.length;i++){
+            lecturers[i] = lecturers[i].username;
+        }
+        res.json({"data": lecturers});
     }catch{
-        res.json({data: []});
+        res.json({"data": []});
     }
 });
 
-/*
-function loadJsondata(){
-    // load data from files
-    let classesdata = fs.readFileSync('./data/classes.json');
-    let calendardata = fs.readFileSync('./data/calendardata.json');
-    let lecturerdata = fs.readFileSync('./data/lecturers.json');
-
-    // parse data to objects
-     lecturer = JSON.parse(lecturerdata);
-     classes = JSON.parse(classesdata);
-     calendar = JSON.parse(calendardata);
-
-}
-*/
 
 // unfinished
 app.post("/setAppointment", function (req, res) {
