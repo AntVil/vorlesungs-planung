@@ -2,10 +2,14 @@
 global variables
 */
 :root{
-    --leftbar_width: 150px;
+    --leftbar_width: 200px;
     --rightbar_width: 350px;
 }
 
+
+/*
+main
+*/
 main{
     position: relative;
     display: grid;
@@ -13,17 +17,49 @@ main{
     grid-template-columns: var(--leftbar_width) auto;
 }
 
+
 /*
 leftbar
 */
 #leftbar{
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: repeat(2, calc((100vh - var(--header_height) - var(--footer_height)) / 2));
     grid-template-columns: 1fr;
 }
 
 #leftbar>div{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 5px;
     padding: 5px;
+    background-color: var(--theme-color-4);
+}
+
+#leftbar>div>div{
+    width: 100%;
+    background-color: var(--theme-color-5);
+    border-radius: 5px;
+}
+
+#leftbar>div>div>div{
+    text-align: center;
+    background-color: var(--theme-color-1);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+#leftbar>div>div>div:hover{
+    background-color: var(--theme-color-2);
+    color: var(--text-color-2);
+    border-color: var(--theme-color-4);
+    cursor: pointer;
+}
+
+#leftbar>div>button{
+    width: 100%;
 }
 
 
@@ -126,7 +162,7 @@ rightbar
     grid-template-rows: auto 1fr;
     right: 0;
     width: var(--rightbar_width);
-    height: calc(100vh - 50px - 50px);
+    height: calc(100vh - var(--header_height) - var(--footer_height));
     transform: translateX(100%);
     transition: transform 0.3s;
     background-color: var(--theme-color-3);
@@ -239,118 +275,14 @@ rightbar content
     cursor: pointer;
 }
 
-.addClassBtn {
-    border: 1px solid;
-    line-height: auto;
-    width: 80%;
-    font-size: 25px;
-    text-align: center;
-    color: rgba(0, 0, 0, 1);
-    
-    background-color: rgba(255, 255, 255, 1);
-    display: grid;
-    margin:auto;
-    margin-bottom: 5%;
-}
-
-.addClassBtn:hover {
-    background-color: #E30013;
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
-    
-}
-
-.addClassBtn:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
-}
-
-.classChoice {
-    width: 75%;
-}
-
-.classListItem {
-    border: 1px solid;
-    list-style-type: None;
-    margin: 0 0 10% 0;
-    font-size:20px;
-    padding: 10%;
-    word-wrap: break-word;
-}
-
-.classListItem:hover {
-    background-color: #E30013;
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
-}
-
-.classListItem:focus {
-    background-color: #E30013;
-    color: rgba(255, 255, 255, 1);
-    
-}
-
-.classListItem:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
-    
-}
-
-.courseList::-webkit-scrollbar{
-  display: none;
-}
-
-.courseList {
-  padding: 10%;
-  overflow: scroll;
-  height: 300px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.lecturerList {
-  padding: 10%;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  height: 300px;
-}
-
-.lecturerList::-webkit-scrollbar{
-  display: none;
-}
-
-#lecturerChoice {
-  width: 75%;
-}
-
-.lecturerListItem {
-  border: 1px solid;
-  list-style-type: None;
-  margin: 0 0 10% 0;
-  font-size:20px;
-  padding: 10%;
-  word-wrap: break-word;
-}
-
-.lecturerListItem:hover {
-    background-color: #E30013;
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
-}
 
 
 
-.lecturerListItem:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
-}
 
-.lecturerListItem:focus {
-  background-color: #E30013;
-  color: rgba(255, 255, 255, 1);
-}
 
+/*
+???
+*/
 .terminPopup{
     border: solid transparent 1px;
     border-radius: 15px;

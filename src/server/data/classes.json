@@ -1,16 +1,7 @@
-[
-  "Theoretische Informatik",
-  "Mathematik",
-  "Programmieren",
-  "Algorithmen",
-  "Projektmanagement",
-  "Python",
-  "Theoretische Informatik",
-  "Mathematik",
-  "Programmieren",
-  "Algorithmen",
-  "Projektmanagement",
-  "Python",
-  "Test",
-  "blub"
-]
+{
+    "data": [
+        "TIF20a",
+        "TIF19a",
+        "TIF19b"
+    ]
+}

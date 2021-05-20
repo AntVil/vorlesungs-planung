@@ -10,9 +10,9 @@ const app = express();
 let lecturer = [];
 let classes = [];
 let calendar = {data:[]};
-
+/*
 loadJsondata();
-
+*/
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 app.use(express.json());
@@ -32,20 +32,31 @@ app.post("/login", function (req, res) {
 
 // unfinished
 app.post("/getCalendar", function (req, res) {
-    console.log(req.body);
-    // get requested month and year
-    let month = req.body.month;
-    let year = req.body.year; 
-       // filter by month and year
-    let returndata = calendar.data.filter(x => x.month == month && x.year == year);
-    // return filtered data
-    res.json({data:returndata});
+    try{
+        // get requested month and year
+        let month = parseInt(req.body.month);
+        let year = parseInt(req.body.year);
+        // load json data from file
+        let calendarData = fs.readFileSync(`./data/calendar/year_${year}/month_${month}.json`);
+        // parse calendardata to object
+        let calendar = JSON.parse(calendarData);
+        res.json(calendar);
+    }catch{
+        res.json({data: []});
+    }
 });
 
 // endpoint to retrieve classesdata
 app.get("/getClasses", function (req, res){
-      // return data
-    res.json(classes);
+    try{
+        // load json data from file
+        let classesData = fs.readFileSync("./data/classes.json");
+        // parse calendardata to object
+        let classes = JSON.parse(classesData);
+        res.json(classes);
+    }catch{
+        res.json({data: []});
+    }
 });
 
 app.post("/addClasses", function (req, res){
@@ -62,10 +73,18 @@ app.post("/addClasses", function (req, res){
 
 // endpoint to retrieve lecturerdata
 app.get("/getLecturers", function (req, res){
-       // return data
-    res.json(lecturer);
+    try{
+        // load json data from file
+        let lecturersData = fs.readFileSync("./data/lecturers.json");
+        // parse calendardata to object
+        let lecturers = JSON.parse(lecturersData);
+        res.json(lecturers);
+    }catch{
+        res.json({data: []});
+    }
 });
 
+/*
 function loadJsondata(){
     // load data from files
     let classesdata = fs.readFileSync('./data/classes.json');
@@ -78,6 +97,7 @@ function loadJsondata(){
      calendar = JSON.parse(calendardata);
 
 }
+*/
 
 // unfinished
 app.post("/setAppointment", function (req, res) {

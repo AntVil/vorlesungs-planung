@@ -21,3 +21,13 @@
     background-color: var(--theme-color-5);
     width: 7px;
 }
+
+.no_scroll{
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.no_scroll::-webkit-scrollbar{
+    display: none;
+}
