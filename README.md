@@ -17,3 +17,5 @@ Now the server should run. To use the application go to [localhost](http://local
 ```url
 http://localhost:3000/
 ```
+## Link to Figma
+https://www.figma.com/file/c5IhiHJf7yhGld0UMOn257/Untitled?node-id=0%3A1&frame-preset-name=Desktop
