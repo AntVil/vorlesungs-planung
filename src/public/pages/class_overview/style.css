@@ -1,0 +1,24 @@
+:root{
+    --leftbar_width: 200px;
+}
+
+main{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: var(--leftbar_width) auto;
+}
+
+#leftbar{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#template_view{
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#class_view{
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
