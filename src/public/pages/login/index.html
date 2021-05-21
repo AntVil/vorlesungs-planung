@@ -17,14 +17,14 @@
         <header></header>
         <main>
             <canvas id="background_animation"></canvas>
-            <form>
-                <input id="admin_radio" type="radio" name="user_selection" checked />
+            <form onsubmit="return false;">
+                <input id="admin_radio" type="radio" name="user_selection" value="admin" checked />
                 <label id="admin_radio_label" for="admin_radio">admin</label>
                 
-                <input id="lecturer_radio" type="radio" name="user_selection" />
+                <input id="lecturer_radio" type="radio" name="user_selection" value="lecturer" />
                 <label id="lecturer_radio_label" for="lecturer_radio">lecturer</label>
                 
-                <input id="student_radio" type="radio" name="user_selection" />
+                <input id="student_radio" type="radio" name="user_selection" value="student" />
                 <label id="student_radio_label" for="student_radio">student</label>
                 
                 <input id="admin_username" placeholder="e-mail" />

@@ -6,8 +6,8 @@
     --theme-color-1: #e30013;
     --theme-color-2: #8f070e;
     --theme-color-3: #7e8a91;
-    --theme-color-4: #DDDDDD;
-    --theme-color-5: #999999;
+    --theme-color-4: #FFFFFF;
+    --theme-color-5: #CCCCCC;
     --text-color-1: #000000;
     --text-color-2: #FFFFFF;
 }
@@ -61,4 +61,8 @@ button{
 button:hover{
     background-color: var(--theme-color-2);
     color: var(--text-color-2);
+}
+
+button:active{
+    filter: brightness(50%);
 }

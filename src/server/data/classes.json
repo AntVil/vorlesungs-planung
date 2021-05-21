@@ -1,16 +1,8 @@
-[
-  "Theoretische Informatik",
-  "Mathematik",
-  "Programmieren",
-  "Algorithmen",
-  "Projektmanagement",
-  "Python",
-  "Theoretische Informatik",
-  "Mathematik",
-  "Programmieren",
-  "Algorithmen",
-  "Projektmanagement",
-  "Python",
-  "Test",
-  "blub"
-]
+{
+    "classes": {
+        "TIF20a": "dKNUNKWOKsXS",
+        "TIF19a": "scUZKmeur3ja",
+        "TIF19b": "GYIuwAwEqTtX",
+        "WWI20A": "5wNXsnWSQzd0"
+    }
+}

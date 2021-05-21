@@ -12,25 +12,26 @@ function login(){
             break;
         }
     }
-    
+
     // fill in form
     let body;
     if (user_selection == "admin"){
         body = {
-            type: user_selection,
-            username: document.getElementById("username_admin").value,
-            password: document.getElementById("password_admin").value
+            "type": user_selection,
+            "username": document.getElementById("admin_username").value,
+            "password": document.getElementById("admin_password").value
         }
     }else if(user_selection == "lecturer"){
         body = {
-            type: user_selection,
-            username: document.getElementById("username_lecturer").value,
-            password: document.getElementById("password_lecturer").value
+            "type": user_selection,
+            "username": document.getElementById("lecturer_username").value,
+            "password": document.getElementById("lecturer_password").value
         }
     }else if(user_selection == "student"){
         body = {
-            type: user_selection,
-            username: document.getElementById("username_student").value
+            "type": user_selection,
+            "username": document.getElementById("student_username").value,
+            "password": ""
         }
     }
 
@@ -41,21 +42,32 @@ function login(){
     
     loginRequest.onload = function () { 
         // save dataKey (used for retrieving data from server)
-        let dataKey = loginRequest.responseText;
-        localStorage.setItem("dataKey", dataKey);
         
-        // redirect to next page
-        window.location.href = window.location.href.split("/login")[0] + "/calendar";
+        let response = JSON.parse(loginRequest.responseText);
+        if(response.status == "successful"){
+            let dataKey = response.token;
+            localStorage.setItem("dataKey", dataKey);
+            // redirect to next page
+            window.location.href = window.location.href.split("/login")[0] + "/calendar";
+        }else{
+            // alert user login failed and clear fields
+            alert("zugriff verweigert");
+            document.getElementById("admin_username").value = "";
+            document.getElementById("admin_password").value = "";
+            document.getElementById("lecturer_username").value = "";
+            document.getElementById("lecturer_password").value = "";
+            document.getElementById("student_username").value = "";
+        }
     };
 
     loginRequest.onerror = function () {
         // alert user login failed and clear fields
         alert("zugriff verweigert");
-        document.getElementById("username_admin").value = "";
-        document.getElementById("password_admin").value = "";
-        document.getElementById("username_lecturer").value = "";
-        document.getElementById("password_lecturer").value = "";
-        document.getElementById("username_student").value = "";
+        document.getElementById("admin_username").value = "";
+        document.getElementById("admin_password").value = "";
+        document.getElementById("lecturer_username").value = "";
+        document.getElementById("lecturer_password").value = "";
+        document.getElementById("student_username").value = "";
     };
 
     loginRequest.send(JSON.stringify(body));

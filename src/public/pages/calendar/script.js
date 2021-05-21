@@ -14,7 +14,7 @@ const CALENDAR_MONTH_NAMES = [
     "Dezember"
 ];
 
-//global variables
+// global variables
 let selectedDate = new Date();
 
 
@@ -41,7 +41,6 @@ function show_day(day){
             
             appointment.style.gridRowStart = parseInt(appointment.getAttribute("aria-start")) - 7;
             appointment.style.gridRowEnd = parseInt(appointment.getAttribute("aria-end")) - 7;
-            console.log(appointment.style.gridRowStart)
 
             day_appointments.appendChild(appointment);
         }
@@ -90,7 +89,7 @@ function updateCalendar(){
     loginRequest.send(JSON.stringify(body));
 }
 
-//fills in the calendar with the appointments
+// fills in the calendar with the appointments
 function fillCalendar(appointments){
     let calendar = document.getElementsByClassName("calendar_day");
 
@@ -104,14 +103,14 @@ function fillCalendar(appointments){
     let date = new Date(Date.UTC(year, month));
     let index = (date.getDay() + 6) % 7;
     
-    //clear days outside range
+    // clear days outside range
     for(let i=0;i<index;i++){
         calendar[i].children[0].innerText = "";
         calendar[i].children[1].innerHTML = "";
         calendar[i].setAttribute("aria-disabled", "true");
     }
 
-    //fill in days + apointments
+    // fill in days + apointments
     while (date < endDate) {
         calendar[index].children[0].innerText = date.getDate() + ".";
         calendar[index].children[1].innerHTML = "";
@@ -139,7 +138,7 @@ function fillCalendar(appointments){
         date.setUTCDate(date.getUTCDate() + 1);
     }
     
-    //clear days outside range
+    // clear days outside range
     for(let i=index;i<calendar.length;i++){
         calendar[i].children[0].innerText = "";
         calendar[i].children[1].innerHTML = "";
@@ -147,144 +146,91 @@ function fillCalendar(appointments){
     }
 }
 
-// kopiert
+// gets the data for the classes and puts it in the leftbar of the page
 function updateClasses(){
-     // get correct url for request
-     let url = window.location.href.split("/pages")[0] + "/getClasses";
+    // get correct url for request
+    let url = window.location.href.split("/pages")[0] + "/getClasses";
 
- 
-     // make request
-     let loginRequest = new XMLHttpRequest();
-     loginRequest.open("GET", url, true);
-     loginRequest.setRequestHeader("Content-Type", "application/json");
+    // make request
+    let classesRequest = new XMLHttpRequest();
+    classesRequest.open("GET", url, true);
+    classesRequest.setRequestHeader("Content-Type", "application/json");
      
-     loginRequest.onload = function () { 
-         let classes = JSON.parse(loginRequest.responseText);
-         
-         fillClasses(classes);
-     };
- 
-     loginRequest.onerror = function () {
-         alert("something went wrong");
-     };
- 
-     loginRequest.send();
-    
+    classesRequest.onload = function () { 
+        console.log(classesRequest.responseText)
+        let classes = JSON.parse(classesRequest.responseText).data;
+        fillClasses(classes);
+    };
 
-   
+    classesRequest.onerror = function () {
+        alert("something went wrong");
+    };
+
+     classesRequest.send();
 }
 
+// fills in all classes in the leftbar of the page
 function fillClasses(classes){
-    document.getElementById("KursListe").innerHTML = "" ;
-    courseList = document.createElement("ul");
-    courseList.className = "courseList";
-    document.getElementById("KursListe").appendChild(courseList);
-    
-    classes.forEach(function (classItem) {
-    let course = document.createElement("li");
-    course.tabIndex = -1;
-    course.className = "classListItem";
-    course.addEventListener("click",function(e) {
-        
-    });
-    courseList.appendChild(course);
-    
-    course.innerHTML += classItem;
-    });
+    let classes_list = document.getElementById("leftbar_classes");
+    classes_list.innerHTML = "";
+    for(let i=0;i<classes.length;i++){
+        let lecturer = document.createElement("div");
+        lecturer.innerText = classes[i];
+        classes_list.appendChild(lecturer);
+    }
 }
 
+// gets the data for the lecturers and puts it in the leftbar of the page
 function updateLecturers(){
     let url = window.location.href.split("/pages")[0] + "/getLecturers";
 
- 
-     // make request
-     let loginRequest = new XMLHttpRequest();
-     loginRequest.open("GET", url, true);
-     loginRequest.setRequestHeader("Content-Type", "application/json");
+    // make request
+    let lecturersRequest = new XMLHttpRequest();
+    lecturersRequest.open("GET", url, true);
+    lecturersRequest.setRequestHeader("Content-Type", "application/json");
      
-     loginRequest.onload = function () { 
-         let lecturer = JSON.parse(loginRequest.responseText);
+    lecturersRequest.onload = function () { 
+        let lecturer = JSON.parse(lecturersRequest.responseText).data;
          
-         fillLecturers(lecturer);
-     };
- 
-     loginRequest.onerror = function () {
-         alert("something went wrong");
-     };
- 
-     loginRequest.send();
+        fillLecturers(lecturer);
+    };
 
+    lecturersRequest.onerror = function () {
+        alert("something went wrong");
+    };
+
+    lecturersRequest.send();
 }
-//
+
+// fills in all lecturers in the leftbar of the page
 function fillLecturers(lecturers){
-    
-    
-    lecturerList  = document.createElement("ul");
-    
-    lecturerList.className = "lecturerList";
-    
-    document.getElementById("lecturerList").appendChild(lecturerList);
-    
-    lecturers.forEach(function (lecturerItem) {
-    let lecturer = document.createElement("li");
-    lecturer.tabIndex = -1;
-    lecturer.className = "lecturerListItem";
-    lecturer.addEventListener("click",function(e) {
-        
-    });
-    lecturer.addEventListener("contextmenu", e => {
-      e.preventDefault();
-    });
-    lecturerList.appendChild(lecturer);
-    
-    lecturer.innerHTML += lecturerItem;
-    });
+    let lecturers_list = document.getElementById("leftbar_lecturers");
+    for(let i=0;i<lecturers.length;i++){
+        let lecturer = document.createElement("div");
+        lecturer.innerText = lecturers[i];
+        lecturers_list.appendChild(lecturer);
+    }
 }
 
 
 function addClass(){
-    let classToAdd = window.prompt("Enter the class you want to add!")
-    let newClass = {name: classToAdd};
-    let url = window.location.href.split("/pages")[0] + "/addClasses";
+    let name = window.prompt("Enter the class you want to add:")
+    let body = {"name": name};
+    let url = window.location.href.split("/pages")[0] + "/addClass";
 
 
     // make request
-    let loginRequest = new XMLHttpRequest();
-    loginRequest.open("POST", url, true);
-    loginRequest.setRequestHeader("Content-Type", "application/json");
+    let addClassRequest = new XMLHttpRequest();
+    addClassRequest.open("POST", url, true);
+    addClassRequest.setRequestHeader("Content-Type", "application/json");
     
-    loginRequest.onload = function () { 
+    addClassRequest.onload = function () { 
         updateClasses();
     };
 
-    loginRequest.onerror = function () {
+    addClassRequest.onerror = function () {
         alert("something went wrong");
     };
 
-    loginRequest.send(JSON.stringify(newClass));
+    addClassRequest.send(JSON.stringify(body));
 }
-
-function addLecturer(){
-    let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
-    lecturers.push(lecturerToAdd);
-    //location.reload();
-    alert(lecturers); //Testfunktion
-}
-
-// let addLecturerBtn = document.getElementById("addLecturerBtn");
-
-// addLecturerBtn.addEventListener("click", function(e){
-// let lecturerToAdd = window.prompt("Enter the lecturer you want to add!")
-// lecturers.push(lecturerToAdd);
-// //location.reload();
-// alert(lecturers); //Testfunktion
-// });
-
-// let addClassBtn = document.getElementById("addClassBtn");
-
-// addClassBtn.addEventListener("click", function(e){
-// let classToAdd = window.prompt("Enter the class you want to add!")
-// classes.push(classToAdd);
-// //location.reload();
-// alert(classes); //Testfunktion
-// });
