@@ -43,26 +43,19 @@ nav{
     background-color: var(--theme-color-2);
 }
 
+nav>a{
+    padding: 2.5px 2.5px 2.5px 10px;
+    background-color: var(--theme-color-5);
+}
+
+nav>a:hover{
+    background-color: var(--theme-color-2);
+}
+
 main{
     background-color: var(--theme-color-3);
 }
 
 footer{
     background-color: var(--theme-color-1);
-}
-
-button{
-    background-color: var(--theme-color-1);
-    border: none;
-    border-radius: 5px;
-    color: var(--text-color-1);
-}
-
-button:hover{
-    background-color: var(--theme-color-2);
-    color: var(--text-color-2);
-}
-
-button:active{
-    filter: brightness(50%);
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title></title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <link rel="stylesheet" href="../../generic-styles/layout.css">
+        <link rel="stylesheet" href="../../generic-styles/style.css">
+        <link rel="stylesheet" href="../../generic-styles/classes.css">
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <nav><a href="../calendar/index.html">Kalender</a><a href="../class_overview/index.html">Kurse</a></nav>
+        <header><h1>Kurs Übersicht</h1></header>
+        <main>
+            
+            <input id="view_control" type="checkbox" />
+
+            <div id="leftbar">
+                <input id="leftbar_templates_toggle" type="checkbox" />
+
+                <div id="leftbar_classes">
+                    <div id="leftbar_classes_content" class="no_scroll">
+                        <div>TIF20a</div>
+                        <div>TIF19a</div>
+                        <div>TIF19b</div>
+                    </div>
+                    <button>+</button>
+                </div>
+                <div id="leftbar_templates">
+                    <label for="leftbar_templates_toggle">🛠️ Templates</label>
+                    <div>
+                        <div id="leftbar_templates_content" class="no_scroll">
+                            <div>TIF</div>
+                            <div>WWI</div>
+                        </div>
+                        <button>+</button>
+                    </div>
+                </div>
+            </div>
+            <div id="template_view">template_view</div>
+            <div id="class_view">class_view</div>
+        </main>
+        <footer></footer>
+    </body>
+</html>

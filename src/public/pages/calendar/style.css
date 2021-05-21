@@ -25,24 +25,18 @@ leftbar
     display: grid;
     grid-template-rows: repeat(2, calc((100vh - var(--header_height) - var(--footer_height)) / 2));
     grid-template-columns: 1fr;
+    background-color: var(--theme-color-4);
+    gap: 5px;
+    padding: 5px;
 }
 
 #leftbar>div{
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: 1fr;
-    gap: 5px;
-    padding: 5px;
-    background-color: var(--theme-color-4);
-}
-
-#leftbar>div>div{
     width: 100%;
     background-color: var(--theme-color-5);
     border-radius: 5px;
 }
 
-#leftbar>div>div>div{
+#leftbar>div>div{
     text-align: center;
     background-color: var(--theme-color-1);
     border-radius: 5px;
@@ -51,15 +45,11 @@ leftbar
     word-wrap: break-word;
 }
 
-#leftbar>div>div>div:hover{
+#leftbar>div>div:hover{
     background-color: var(--theme-color-2);
     color: var(--text-color-2);
     border-color: var(--theme-color-4);
     cursor: pointer;
-}
-
-#leftbar>div>button{
-    width: 100%;
 }
 
 
