@@ -6,23 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popup</title>
 
-    <link rel="stylesheet" href="./calendar/style.css">
-    <script src="./calendar/script.js"></script>
+    <style>
+#terminPopup{
+    display: none;
+    position:absolute;
+    left:33%;
+    top:33%;
+    max-height: 250px;
+    transition: max-height .4s ease-in-out;
+    overflow: hidden;
+    border: solid transparent 1px;
+    border-radius: 15px;
+    padding: 15px;
+    width: 600px;
+    box-shadow: 1px 1px 20px;
+}
+
+
+#terminPopup section{
+    float: right;
+}
+
+#terminPopup #closeBtn{
+    position: relative;
+    float: right;
+    font-size: larger;
+    padding:2px 6px 2px 6px  ;
+    background-color: transparent;
+    border: solid transparent 1px;
+    border-radius: 3px;
+    transition: background-color .2s;
+}
+
+#terminPopup #closeBtn:hover{
+    cursor:pointer;
+    background-color: rgba(255, 0, 0, 0.418);
+}
+
+#btnSection button{
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid transparent 1px;
+    box-shadow: grey 1px 1px 5px;
+    transition: background-color .3s;
+}
+
+#btnSection{
+    max-width: 300px;
+    max-height: 47px;
+    transition: max-width .4s ease-in-out;
+    overflow: hidden;
+}
+
+.annehmenBtn:hover{
+    cursor:pointer;
+    background-color: rgba(42, 131, 1, 0.288);
+}
+
+.ablehnenBtn:hover{
+    cursor:pointer;
+    background-color: rgba(255, 0, 0, 0.363);
+}
+
+#terminPopup section input{
+    padding: 10px;
+}
+
+#formSection{
+    display: flex;
+    width: 100%;
+}
+
+#terminPopup section form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#terminPopup section form textarea{
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#cancelAndSubmit>*{
+    padding: 10px;
+    height: 40px;
+    border: solid transparent 1px;
+    border-radius: 5px;
+    box-shadow: grey 1px 1px 5px;
+}
+
+#cancelAndSubmit{
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+    </style>
+
+    <script>
+            
+            let form = document.getElementById("responseForm");
+            function handleForm(event) { event.preventDefault(); } 
+            form.addEventListener('submit', handleForm);
+
+        //toggle popup display property
+        function showPopup(){
+            popup = document.getElementById("terminPopup");
+            if (popup.style.display === "none"){
+                popup.style.display = "block";
+            }
+            else{
+                popup.style.display = "none";
+            }
+        }
+
+        function showResForm(){
+            //slide out Response Form
+            popup = document.getElementById("terminPopup");
+            popup.style.maxHeight = "500px";
+            //slide in Button Section
+            btns = document.getElementById("btnSection");
+            btns.style.maxWidth = "0px";
+        }
+    </script>
 
 </head>
 <body>
-    <button>termin</button>
-    <div class="terminPopup">
+    <button id="testButton" onclick="showPopup()">termin</button>
+    <div id="terminPopup">
+        <button id="closeBtn" onclick="showPopup()">x</button>
         <h2>Title</h1>
         <time>Zeitangabe</time>
         <p>Dozent</p>
         <p>Raum/<a>Raumlink</a></p>
         <p>status</p>
-        <section>
-            <button>annehmen</button>
-            <button>ablehnen</button>
-            <input type="text">
+        <section id="btnSection">
+            <button class="annehmenBtn" onclick="showResForm()">annehmen</button>
+            <button class="ablehnenBtn" onclick="showResForm()">ablehnen</button>
         </section>
+        <br><br><br>
+        <!--response Form-->
+        <section id="formSection">
+            <form id="responseForm">
+                <!--response input text field-->
+                <textarea id="resInput" type="text" rows="5" cols="65" placeholder="Antwort"></textarea>
+                <div id="cancelAndSubmit">
+                    <button class="ablehnenBtn">Abbruch</button>
+                    <input id="resSubmit" class="annehmenBtn" type="submit">
+                </div>
+                
+            </form>
+        </section>
+        
         
     </div>
 </body>
