@@ -7,10 +7,21 @@ body{
     position: fixed;
     display: grid;
     grid-template-rows: var(--header_height) 1fr var(--footer_height);
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 3fr;
     width: 100%;
     height: 100%;
     margin: 0;
+}
+
+nav{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    z-index: 1;
+}
+
+header{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
 }
 
 header>h1{
@@ -25,8 +36,12 @@ header>h1{
 
 main{
     transition: all 0.3s;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
 }
 
 footer{
     text-align: center;
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
 }

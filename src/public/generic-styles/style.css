@@ -50,19 +50,3 @@ main{
 footer{
     background-color: var(--theme-color-1);
 }
-
-button{
-    background-color: var(--theme-color-1);
-    border: none;
-    border-radius: 5px;
-    color: var(--text-color-1);
-}
-
-button:hover{
-    background-color: var(--theme-color-2);
-    color: var(--text-color-2);
-}
-
-button:active{
-    filter: brightness(50%);
-}
