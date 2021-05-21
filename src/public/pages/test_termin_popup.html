@@ -7,13 +7,18 @@
     <title>Popup</title>
 
     <style>
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #terminPopup{
     display: none;
     position:absolute;
     left:33%;
     top:33%;
-    max-height: 250px;
-    transition: max-height .4s ease-in-out;
+    max-height: 215px;
+    transition: max-height .3s ease-in-out;
     overflow: hidden;
     border: solid transparent 1px;
     border-radius: 15px;
@@ -53,9 +58,10 @@
 }
 
 #btnSection{
+    display:none;
     max-width: 300px;
     max-height: 47px;
-    transition: max-width .4s ease-in-out;
+    transition: max-width .3s ease-in-out;
     overflow: hidden;
 }
 
@@ -108,43 +114,95 @@
 }
     </style>
 
-    <script>
-            
-            let form = document.getElementById("responseForm");
-            function handleForm(event) { event.preventDefault(); } 
-            form.addEventListener('submit', handleForm);
+    <script>//build as class?
+
+
 
         //toggle popup display property
-        function showPopup(){
-            popup = document.getElementById("terminPopup");
-            if (popup.style.display === "none"){
-                popup.style.display = "block";
+        function showPopup(appointment){
+
+            const popup = document.getElementById("terminPopup");
+            const details = document.getElementById("appointmentProperties");
+            //reset details from previous popup
+            details.innerHTML = "";
+
+            const btns = document.getElementById("btnSection");
+
+            let ariaName = appointment.getAttribute("aria-name");
+            let ariaLecturer = appointment.getAttribute("aria-lecturer");
+            let ariaLocation = appointment.getAttribute("aria-location");
+            let ariaTime = appointment.getAttribute("aria-start") +" - "+ appointment.getAttribute("aria-end");
+
+            popup.style.display = "block";
+
+            //create html elements with appointment specific information
+            let title = document.createElement("H2");
+            title.innerHTML = ariaName + " - " + ariaLecturer
+            details.appendChild(title);
+
+            let time = document.createElement("TIME");
+            time.innerHTML = ariaTime;
+            details.appendChild(time)
+
+            let lecturer = document.createElement("P");
+            lecturer.innerHTML = ariaLecturer;
+            details.appendChild(lecturer);
+
+            let location = document.createElement("P");
+            location.innerHTML = ariaLocation;
+            details.appendChild(location);
+
+            //check if appointment status is pending
+            if (appointment.getAttribute("aria-status")==="pending"){
+                //status is pending -> display buttons
+                btns.style.display = "block";
+                btns.style.maxWidth = "200px";
             }
             else{
-                popup.style.display = "none";
+                //status is not pending -> do not display buttons
+                btns.style.display = "none";
             }
+                
         }
+        function closePopup(){
+            const popup = document.getElementById("terminPopup");
+            popup.style.display = "none";
+        }
+                
 
         function showResForm(){
             //slide out Response Form
-            popup = document.getElementById("terminPopup");
+            const popup = document.getElementById("terminPopup");
             popup.style.maxHeight = "500px";
             //slide in Button Section
-            btns = document.getElementById("btnSection");
+            const btns = document.getElementById("btnSection");
             btns.style.maxWidth = "0px";
+        }
+
+        function hideResForm(){
+            //slide in Response Form
+            const popup = document.getElementById("terminPopup");
+            popup.style.maxHeight = "215px";
+            //slide in Button Section
+            const btns = document.getElementById("btnSection");
+            btns.style.maxWidth = "200px";
+        }
+
+        function sendFormData(){
+            const popup = document.getElementById("terminPopup");
+            popup.style.maxHeight = "215px";
         }
     </script>
 
 </head>
 <body>
-    <button id="testButton" onclick="showPopup()">termin</button>
+    <button onclick="showPopup(this)" aria-id="123" aria-name="Anwendungsprojekt" aria-location="BigBlueButton" aria-start="9" aria-end="12" aria-status="pending" aria-lecturer="Behrends" aria-type="lecture">termin 1</button>
+    <button onclick="showPopup(this)" aria-id="123" aria-name="Python" aria-location="BigBlueButton:" aria-start="9" aria-end="12" aria-status="pending" aria-lecturer="Laage-Witt" aria-type="lecture">termin 2</button>
     <div id="terminPopup">
-        <button id="closeBtn" onclick="showPopup()">x</button>
-        <h2>Title</h1>
-        <time>Zeitangabe</time>
-        <p>Dozent</p>
-        <p>Raum/<a>Raumlink</a></p>
-        <p>status</p>
+        <button id="closeBtn" onclick="closePopup()">x</button>
+        <div id="appointmentProperties">
+            <!--Appoinmtent details go here-->
+        </div>
         <section id="btnSection">
             <button class="annehmenBtn" onclick="showResForm()">annehmen</button>
             <button class="ablehnenBtn" onclick="showResForm()">ablehnen</button>
@@ -152,12 +210,12 @@
         <br><br><br>
         <!--response Form-->
         <section id="formSection">
-            <form id="responseForm">
+            <form id="responseForm" onsubmit="return false"> <!-- prevent submitForm from reloading the Page-->
                 <!--response input text field-->
                 <textarea id="resInput" type="text" rows="5" cols="65" placeholder="Antwort"></textarea>
                 <div id="cancelAndSubmit">
-                    <button class="ablehnenBtn">Abbruch</button>
-                    <input id="resSubmit" class="annehmenBtn" type="submit">
+                    <button class="ablehnenBtn" onclick="hideResForm()">Abbruch</button>
+                    <input id="resSubmit" class="annehmenBtn" type="submit" onclick="sendFormData()">
                 </div>
                 
             </form>
