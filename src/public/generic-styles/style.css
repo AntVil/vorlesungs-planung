@@ -43,6 +43,15 @@ nav{
     background-color: var(--theme-color-2);
 }
 
+nav>a{
+    padding: 2.5px 2.5px 2.5px 10px;
+    background-color: var(--theme-color-5);
+}
+
+nav>a:hover{
+    background-color: var(--theme-color-2);
+}
+
 main{
     background-color: var(--theme-color-3);
 }

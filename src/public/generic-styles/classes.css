@@ -1,4 +1,4 @@
-button, a{
+button{
     background-color: var(--theme-color-1);
     border: none;
     border-radius: 5px;
@@ -6,7 +6,7 @@ button, a{
     padding: 1px 3px 1px 3px;
 }
 
-button:hover, a:hover{
+button:hover{
     background-color: var(--theme-color-2);
     color: var(--text-color-2);
 }
