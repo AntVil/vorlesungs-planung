@@ -51,14 +51,14 @@ classes
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     width: 100%;
-    height: calc((100vh - var(--header_height) - var(--footer_height)) * 0.95);
+    height: calc((100vh - var(--header_height) - var(--footer_height)) - 40px);
     background-color: var(--theme-color-5);
     border-radius: 5px;
     transition: height 1s;
 }
 
 #leftbar_templates_toggle:checked~#leftbar_classes{
-    height: calc((100vh - var(--header_height) - var(--footer_height)) * 0.5);
+    height: calc((100vh - var(--header_height) - var(--footer_height)) * 0.5 - 20px);
 }
 
 #leftbar_classes>button{
@@ -113,7 +113,7 @@ Templates
 }
 
 #leftbar_templates_toggle:checked~#leftbar_templates>div{
-    height: 40vh;
+    height: calc((100vh - var(--header_height) - var(--footer_height)) * 0.5 - 20px);
     opacity: 1;
 }
 
