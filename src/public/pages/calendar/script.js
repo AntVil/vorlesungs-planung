@@ -37,7 +37,9 @@ function show_day(day){
         let appointments = day.children[1].children;
 
         for(let i=0;i<appointments.length;i++){
-            appointment = appointments[i].cloneNode(true)
+            appointment = appointments[i].cloneNode(true);
+
+            appointment.onclick = show_popup;
             
             appointment.style.gridRowStart = parseInt(appointment.getAttribute("aria-start")) - 7;
             appointment.style.gridRowEnd = parseInt(appointment.getAttribute("aria-end")) - 7;
@@ -45,6 +47,19 @@ function show_day(day){
             day_appointments.appendChild(appointment);
         }
     }
+}
+
+// show popup
+function show_popup(appointment){
+    document.getElementById("popup_checkbox").checked = true;
+    document.getElementById("popup_radio_appointment_status_unset").checked = true;
+}
+
+function acceptAppointment(){
+    document.getElementById("popup_checkbox").checked = false;
+}
+function declineAppointment(){
+    document.getElementById("popup_checkbox").checked = false;
 }
 
 // calendar control

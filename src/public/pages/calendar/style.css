@@ -264,3 +264,125 @@ rightbar content
     border-color: var(--theme-color-4);
     cursor: pointer;
 }
+
+
+/*
+popup
+*/
+#popup{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    background-color: var(--theme-color-5);
+    border-radius: 5px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 5px;
+    transition: opacity 0.5s, z-index 1s;
+    overflow: hidden;
+}
+
+#popup_close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0px 5px 0px 5px;
+    border-radius: 5px;
+}
+
+#popup_close:hover{
+    background-color: var(--theme-color-2);
+}
+
+#popup_checkbox{
+    display: none;
+}
+
+#popup>input[type="radio"]{
+    display: none;
+}
+
+#popup_checkbox:checked~main>#popup{
+    opacity: 1;
+    z-index: 1;
+}
+
+#popup_appointment_status_accepted, #popup_appointment_status_declined{
+    opacity: 0;
+    height: 0;
+    transition: height 0.5s, opacity 0.5s;
+}
+
+#popup_radio_appointment_status_accepted:checked~#popup_appointment_status_accepted{
+    opacity: 1;
+    height: 61px;
+    z-index: 1;
+}
+
+#popup_radio_appointment_status_declined:checked~#popup_appointment_status_declined{
+    opacity: 1;
+    height: 61px;
+    z-index: 1;
+}
+
+#popup_radio_appointment_status_accepted:checked~#popup_appointment_options, #popup_radio_appointment_status_declined:checked~#popup_appointment_options{
+    opacity: 0;
+    height: 0;
+    z-index: -1;
+    padding: 0;
+}
+
+#popup_appointment_options{
+    align-self: right;
+    justify-self: right;
+    overflow: hidden;
+    padding: 5px 0 5px 0;
+    transition: opacity 1s, height 1s, padding 1s;
+}
+
+#popup>form{
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    padding: 0 5px 0 5px;
+    z-index: -1;
+}
+
+#popup>form>textarea{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    width: 30vw;
+    resize: none;
+}
+
+#popup>form>label{
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#popup>form>button{
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+
+#popup>div>label, #popup>form>label, #popup>form>button{
+    text-align: center;
+    background-color: var(--theme-color-1);
+    border-radius: 5px;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+#popup>div>label:hover, #popup>form>label:hover, #popup>form>button:hover{
+    color: var(--text-color-2);
+    border-color: var(--theme-color-4);
+    cursor: pointer;
+}
