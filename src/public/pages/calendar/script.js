@@ -24,6 +24,38 @@ window.onload = function(){
     updateLecturers();
 }
 
+
+// show popup
+function show_popup(appointment){
+    document.getElementById("popup_checkbox").checked = true;
+    document.getElementById("popup_radio_appointment_status_unset").checked = true;
+}
+
+function acceptAppointment(){
+    document.getElementById("popup_checkbox").checked = false;
+}
+
+function declineAppointment(){
+    document.getElementById("popup_checkbox").checked = false;
+}
+
+
+// calendar control
+function previousMonth(){
+    let year = selectedDate.getFullYear();
+    let month = selectedDate.getMonth();
+    selectedDate = new Date(year - (month == 0), (month + 11) % 12);
+    updateCalendar();
+}
+
+function nextMonth(){
+    let year = selectedDate.getFullYear();
+    let month = selectedDate.getMonth();
+    selectedDate = new Date(year + (month == 11), (month + 1) % 12);
+    updateCalendar();
+}
+
+
 // show sidebar + fill with appointments
 function show_day(day){
     if(day.getAttribute("aria-disabled") == "false"){
@@ -49,32 +81,6 @@ function show_day(day){
     }
 }
 
-// show popup
-function show_popup(appointment){
-    document.getElementById("popup_checkbox").checked = true;
-    document.getElementById("popup_radio_appointment_status_unset").checked = true;
-}
-
-function acceptAppointment(){
-    document.getElementById("popup_checkbox").checked = false;
-}
-function declineAppointment(){
-    document.getElementById("popup_checkbox").checked = false;
-}
-
-// calendar control
-function previousMonth(){
-    let year = selectedDate.getFullYear();
-    let month = selectedDate.getMonth();
-    selectedDate = new Date(year - (month == 0), (month + 11) % 12);
-    updateCalendar();
-}
-function nextMonth(){
-    let year = selectedDate.getFullYear();
-    let month = selectedDate.getMonth();
-    selectedDate = new Date(year + (month == 11), (month + 1) % 12);
-    updateCalendar();
-}
 
 // request appointments from server
 function updateCalendar(){
@@ -103,6 +109,7 @@ function updateCalendar(){
 
     loginRequest.send(JSON.stringify(body));
 }
+
 
 // fills in the calendar with the appointments
 function fillCalendar(appointments){
@@ -146,7 +153,6 @@ function fillCalendar(appointments){
                 calendar[index].children[1].appendChild(appointment);
             }
         }
-
         calendar[index].setAttribute("aria-disabled", "false");
 
         index += 1;
@@ -160,6 +166,7 @@ function fillCalendar(appointments){
         calendar[i].setAttribute("aria-disabled", "true");
     }
 }
+
 
 // gets the data for the classes and puts it in the leftbar of the page
 function updateClasses(){
@@ -195,6 +202,7 @@ function fillClasses(classes){
     }
 }
 
+
 // gets the data for the lecturers and puts it in the leftbar of the page
 function updateLecturers(){
     let url = window.location.href.split("/pages")[0] + "/getLecturers";
@@ -225,27 +233,4 @@ function fillLecturers(lecturers){
         lecturer.innerText = lecturers[i];
         lecturers_list.appendChild(lecturer);
     }
-}
-
-
-function addClass(){
-    let name = window.prompt("Enter the class you want to add:")
-    let body = {"name": name};
-    let url = window.location.href.split("/pages")[0] + "/addClass";
-
-
-    // make request
-    let addClassRequest = new XMLHttpRequest();
-    addClassRequest.open("POST", url, true);
-    addClassRequest.setRequestHeader("Content-Type", "application/json");
-    
-    addClassRequest.onload = function () { 
-        updateClasses();
-    };
-
-    addClassRequest.onerror = function () {
-        alert("something went wrong");
-    };
-
-    addClassRequest.send(JSON.stringify(body));
 }
