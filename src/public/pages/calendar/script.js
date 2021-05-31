@@ -26,9 +26,23 @@ window.onload = function(){
 
 
 // show popup
-function show_popup(appointment){
+function show_popup(appointment){ //the appointment-element that is clicked on, passes itself as the argument of this function
     document.getElementById("popup_checkbox").checked = true;
     document.getElementById("popup_radio_appointment_status_unset").checked = true;
+
+//fill popup with correct appointment information
+    const popupInfo = document.getElementById("popup_info").children;
+
+    let ariaName = appointment.getAttribute("aria-name");
+    let ariaLecturer = appointment.getAttribute("aria-lecturer");
+    let ariaLocation = appointment.getAttribute("aria-location");
+    let ariaTime = appointment.getAttribute("aria-start") +" - "+ appointment.getAttribute("aria-end");
+
+    document.getElementById("popup_name").innerHTML = ariaName + " - " + ariaLecturer
+    popupInfo[0].innerHTML = ariaName;
+    popupInfo[1].innerHTML = ariaTime;
+    popupInfo[2].innerHTML = ariaLecturer;
+    popupInfo[3].innerHTML = ariaLocation;
 }
 
 function acceptAppointment(){
@@ -71,7 +85,7 @@ function show_day(day){
         for(let i=0;i<appointments.length;i++){
             appointment = appointments[i].cloneNode(true);
 
-            appointment.onclick = show_popup;
+            //appointment.onclick = show_popup;
             
             appointment.style.gridRowStart = parseInt(appointment.getAttribute("aria-start")) - 7;
             appointment.style.gridRowEnd = parseInt(appointment.getAttribute("aria-end")) - 7;
@@ -149,6 +163,7 @@ function fillCalendar(appointments){
                 appointment.setAttribute("aria-status", appointments[i].status);
                 appointment.setAttribute("aria-lecturer", appointments[i].lecturer);
                 appointment.setAttribute("aria-type", appointments[i].type);
+                appointment.setAttribute("onclick", "show_popup(this)");
 
                 calendar[index].children[1].appendChild(appointment);
             }
