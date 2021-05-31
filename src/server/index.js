@@ -106,6 +106,19 @@ app.get("/getClasses", function (req, res){
     }
 });
 
+// endpoint to retrieve classesdata
+app.get("/getTemplates", function (req, res){
+    try{
+        // load json data from file
+        let templatesData = fs.readFileSync("./data/templates.json");
+        // parse String to object
+        let templates = JSON.parse(templatesData);
+        res.json({"data": Object.keys(templates.templates)});
+    }catch{
+        res.json({"data": []});
+    }
+});
+
 // endpoint to add class
 app.post("/addClass", function (req, res){
     let name = req.body.name;

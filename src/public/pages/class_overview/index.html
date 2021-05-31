@@ -19,32 +19,29 @@
         <header><h1>Kurs Übersicht</h1></header>
         <main>
             
-            <input id="view_control" type="checkbox" />
+            <input id="view_control" type="checkbox" checked />
 
-            <div id="leftbar">
+            <section id="leftbar">
                 <input id="leftbar_templates_toggle" type="checkbox" />
 
                 <div id="leftbar_classes">
-                    <div id="leftbar_classes_content" class="no_scroll">
-                        <div>TIF20a</div>
-                        <div>TIF19a</div>
-                        <div>TIF19b</div>
-                    </div>
-                    <button>+</button>
+                    <div id="leftbar_classes_content" class="no_scroll"></div>
+                    <button onclick="toClassView()">+</button>
                 </div>
                 <div id="leftbar_templates">
                     <label for="leftbar_templates_toggle">🛠️ Templates</label>
                     <div>
-                        <div id="leftbar_templates_content" class="no_scroll">
-                            <div>TIF</div>
-                            <div>WWI</div>
-                        </div>
-                        <button>+</button>
+                        <div id="leftbar_templates_content" class="no_scroll"></div>
+                        <button onclick="toTemplateView()">+</button>
                     </div>
                 </div>
+            </section>
+            <div id="template_view">
+                <h2>Templates</h2>
             </div>
-            <div id="template_view">template_view</div>
-            <div id="class_view">class_view</div>
+            <div id="class_view">
+                <h2>Classes</h2>
+            </div>
         </main>
         <footer></footer>
     </body>
