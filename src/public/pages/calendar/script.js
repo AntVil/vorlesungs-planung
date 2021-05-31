@@ -178,8 +178,7 @@ function updateClasses(){
     classesRequest.open("GET", url, true);
     classesRequest.setRequestHeader("Content-Type", "application/json");
      
-    classesRequest.onload = function () { 
-        console.log(classesRequest.responseText)
+    classesRequest.onload = function () {
         let classes = JSON.parse(classesRequest.responseText).data;
         fillClasses(classes);
     };
@@ -193,7 +192,7 @@ function updateClasses(){
 
 // fills in all classes in the leftbar of the page
 function fillClasses(classes){
-    let classes_list = document.getElementById("leftbar_classes");
+    let classes_list = document.getElementById("leftbar_classes_content");
     classes_list.innerHTML = "";
     for(let i=0;i<classes.length;i++){
         let lecturer = document.createElement("div");
@@ -227,7 +226,7 @@ function updateLecturers(){
 
 // fills in all lecturers in the leftbar of the page
 function fillLecturers(lecturers){
-    let lecturers_list = document.getElementById("leftbar_lecturers");
+    let lecturers_list = document.getElementById("leftbar_lecturers_content");
     for(let i=0;i<lecturers.length;i++){
         let lecturer = document.createElement("div");
         lecturer.innerText = lecturers[i];
